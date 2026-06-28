@@ -61,4 +61,5 @@ The SSD could not be installed because the laptop lacked the required SATA cable
 - VirtualBox installed
 - Debian virtual machine operational
 - GitHub repository created
-- Preparing to install Git
+- Git for Windows installed and verified (git --version)
+- Next objective, clone this repository to the local machine
