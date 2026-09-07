@@ -1,6 +1,6 @@
 # LAB-001: Deploy Minimal Debian on Destroyer
 
-- **Status:** In Progress
+- **Status:** Completed
 - **Priority:** High
 - **Opened:** 2026-09-02
 - **Assigned to:** David Smith
@@ -80,6 +80,19 @@ Reinstall antiX from existing installation media if the Debian deployment fails 
 - Verified the SSH service was active.
 - Successfully connected to Destroyer over SSH from Cutter.
 
+### 2026-09-06
+
+- Reconnected from Cutter after DHCP changed Destroyer’s address from `10.0.0.249` to `10.0.0.247`.
+- Confirmed the SSH host-key fingerprint matched the previously recorded key.
+- Refreshed APT package indexes; all configured repositories responded and all packages were current.
+- Searched for and inspected the `git` package before installation.
+- Installed Git and verified version `2.47.3`.
+- Verified systemd reported zero failed units.
+- Recorded memory baseline: 1.9 GiB RAM, 269 MiB used, 1.7 GiB available, and no swap in use.
+- Recorded filesystem baseline: 90 GiB root filesystem with 84 GiB available and a separate 943 MiB `/boot`.
+- Verified the LVM hierarchy and confirmed 130.80 GiB remains free in `destroyer-vg` for training.
+- Identified `sdb` as the empty built-in xD/SD/Memory Stick card reader.
+
 ## Resolution
 
-Pending.
+Destroyer was successfully rebuilt as a minimal, terminal-primary Debian 13 system. Local administration, package management, LVM storage, networking, systemd service health, Git, and remote SSH access from Cutter were verified. All acceptance criteria were met.
