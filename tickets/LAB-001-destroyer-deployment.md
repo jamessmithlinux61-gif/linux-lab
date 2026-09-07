@@ -5,7 +5,7 @@
 - **Opened:** 2026-09-02
 - **Assigned to:** David Smith
 - **System:** Destroyer — Dell Latitude 2120
-- **Current OS:** antiX
+- **Current OS:** Debian 13.6 (Trixie), minimal installation
 - **Target OS:** Debian 13.6 (Trixie), amd64 netinst
 
 ## Objective
@@ -64,6 +64,21 @@ Reinstall antiX from existing installation media if the Debian deployment fails 
 - Verified SHA-256 checksum:
   `65273beed27b2df543b68b65630ba525cfbad8df2b12035732b2dff87d6664e7`
 - Checksum matched the published value.
+- Booted the verified netinst ISO through Ventoy in legacy BIOS mode.
+- Replaced the existing antiX installation with minimal Debian.
+- Installed standard system utilities and OpenSSH server without a desktop environment.
+- Configured hostname `destroyer` and administrative user `david`.
+- Locked direct password login to `root`; administrative access is provided through `sudo`.
+- Partitioned the 250.1 GB internal drive using LVM:
+  - Volume group: `destroyer-vg`
+  - Root logical volume: approximately 91.15 GiB
+  - Swap logical volume: 1.80 GiB
+  - Free volume-group capacity reserved for training: 130.80 GiB
+- Verified Debian 13 booted from the internal drive to a text console.
+- Recorded kernel `6.12.107+deb13-amd64` and architecture `x86-64`.
+- Verified Wi-Fi connectivity using DHCP address `10.0.0.249/24`.
+- Verified the SSH service was active.
+- Successfully connected to Destroyer over SSH from Cutter.
 
 ## Resolution
 
