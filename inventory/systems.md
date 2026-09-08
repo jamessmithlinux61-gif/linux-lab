@@ -1,11 +1,12 @@
 # Task Force 27 Systems Inventory
 
 * **Owner:** David Smith
+- **Lab name:** Task Force 27
 * **Purpose:** Linux and IT administration training laboratory
 * **Last updated:** 2026-09-08
 * **Current objective:** Objective: October26
 
-This inventory records the current roles and configurations of Task Force 27 assets. Credentials, serial numbers, MAC addresses, public IP addresses, workplace identifiers, and other sensitive information are intentionally excluded.
+Task Force 27 is the collective name for the computers, mobile endpoints, and removable environments that make up David Smith's home Linux and IT administration laboratory.
 
 ## Computers
 
