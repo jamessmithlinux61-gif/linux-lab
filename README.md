@@ -1,65 +1,150 @@
-# Linux-Lab
+# Linux-Lab — Task Force 27
 
-Welcome to my Linux and system administration learning journal
+A hands-on Linux and system administration learning laboratory.
 
-This repository documents my progress as I work toward becoming a Linux System Administrator. It includes hardware upgrades, operating system installations, networking labs, Bash scripting, Python projects, troubleshooting notes, and lessons learned.
-## Hardware
+This repository documents my progress toward professional Linux system administration through practical work on real hardware. Rather than treating the lab as a collection of isolated tutorials, I use the systems in **Task Force 27** to practise installation, configuration, networking, troubleshooting, documentation, and change management.
 
-### Laptop
+My goal is to build both the technical skills and the working habits expected of a Linux administrator.
 
-- Acer Aspire 5
-- Windows 11 (host operating system)
-- VirtualBox for Linux virtual machines
+## Current Focus
 
-### RAM Upgrade (Successful)
+**Objective: October26**
 
-#### Original configuration
+Current study and lab work centres on:
 
-- 4 GB DDR4
-  
-#### Upgrade
+* Linux command-line administration
+* Filesystems and storage
+* Users, groups, ownership, and permissions
+* Package management with APT/dpkg
+* systemd and service management
+* Networking and network troubleshooting
+* SSH and remote administration
+* Git and GitHub
+* Bash and administrative scripting
+* Troubleshooting methodology
+* Security fundamentals
 
-- Added 8 GB DDR4-2666 SODIMM
-- Total memory now 12 GB
-  
-**Result**
+Longer-term objectives include RHCSA-level Linux administration, networking, automation, and security.
 
-The upgrade completed successfully and significantly improved the laptop's responsiveness, especially when running VirtualBox and multiple applications simultaneously.
+## Task Force 27
 
-#### Storage Upgrade Attempt (Unsuccessful)
+Task Force 27 is a mixed-hardware home lab built around several machines with different roles and capabilities.
 
-Drive purchased
+| System        | Platform               | Operating System           | Primary Role                                          |
+| ------------- | ---------------------- | -------------------------- | ----------------------------------------------------- |
+| **Carrier**   | Self-built AMD desktop | Debian 13 / LXQt           | Infrastructure host and planned central storage       |
+| **Cruiser**   | Acer Aspire 5          | Windows 11                 | Windows workstation and cross-platform administration |
+| **Cutter**    | Lenovo laptop          | Debian 13 / LXQt           | Primary Linux workstation and administration console  |
+| **Corvette**  | Acer Chromebook 311    | ChromeOS / Debian Crostini | Portable administration endpoint                      |
+| **Destroyer** | Dell Latitude 2120     | Minimal Debian 13          | Terminal-primary Linux administration server          |
+| **Frigate**   | Acer Aspire One        | antiX 26 / Fluxbox         | Low-resource and legacy Linux system                  |
+| **Stingray**  | 128 GB USB             | Persistent antiX Live      | Portable Linux, testing, and recovery environment     |
 
-- PNY CS900 500 GB SATA SSD
+Detailed specifications and system status are maintained in [`inventory/systems.md`](inventory/systems.md).
 
-**Objective**
+## Selected Lab Work
 
-Install a dedicated SSD for Linux virtual machines and lab work.
+### LAB-001 — Minimal Debian Deployment on Destroyer
 
-**Result**
+Rebuilt a Dell Latitude 2120 as a terminal-primary Debian administration system.
 
-The SSD could not be installed because the laptop lacked the required SATA cable/connector arrangement. Although the drive dimensions were compatible with the drive bay, connector misalignment would not allow the SSD to fit properly.
+Work included:
 
-**Lesson learned**
+* Debian 13 minimal installation
+* LVM disk configuration
+* OpenSSH configuration and verification
+* Remote administration from Cutter
+* APT/dpkg package management
+* Git installation
+* systemd service verification
+* Baseline storage, memory, networking, and system documentation
 
-- *Never* assume that an empty drive bay includes the required cabling.
-- Verify connector compatability and physical space requirements.
-- Thoroughly research specific laptop model before ordering upgrade components.
+See [`tickets/LAB-001-destroyer-deployment.md`](tickets/LAB-001-destroyer-deployment.md).
 
-## Current Goals
+### LAB-002 — antiX Validation and Service Troubleshooting on Frigate
 
-- Learn Linux administration
-- Become proficient with Bash
-- Learn Git and GitHub
-- Earn RHCSA certification
-- Learn Python for system administration
-- Build a portfolio of projects and documentation
+Validated and repaired an antiX installation on a low-resource Acer Aspire One.
 
-## Current Lab Status
+Work included:
 
-- Windows 11 host installed
-- VirtualBox installed
-- Debian virtual machine operational
-- GitHub repository created
-- Git for Windows installed and verified (git --version)
-- Next objective, clone this repository to the local machine
+* Administrative account recovery
+* Wi-Fi and package-repository validation
+* Investigation of incorrect system time
+* Chrony/NTP troubleshooting
+* runit service configuration
+* Diagnosis and correction of a faulty service launch command
+* Package-state validation with `dpkg`
+
+See [`tickets/LAB-002-frigate-antix-deployment.md`](tickets/LAB-002-frigate-antix-deployment.md).
+
+### LAB-003 — Persistent antiX Live USB
+
+Built **Stingray**, a persistent antiX live environment intended for portable Linux practice, hardware testing, troubleshooting, and recovery work.
+
+The initial build and persistence testing are complete. Additional cross-hardware testing remains in progress.
+
+See [`tickets/LAB-003-stingray-antix-live-usb.md`](tickets/LAB-003-stingray-antix-live-usb.md).
+
+### INC-001 — Unexpected Wi-Fi Connection Investigation
+
+Investigated an unexpected connection by Cutter to an unfamiliar open wireless network.
+
+The investigation included:
+
+* NetworkManager profile analysis
+* systemd journal and kernel-log review
+* NetworkManager audit records
+* Process identification
+* USB and Bluetooth history
+* Review of relevant network-manager behaviour
+* Security-impact assessment
+* Mitigation and recurrence monitoring
+
+No evidence of malicious activity was identified.
+
+See [`tickets/INC-001-cutter-unexpected-wifi.md`](tickets/INC-001-cutter-unexpected-wifi.md).
+
+## Repository Structure
+
+```text
+linux-lab/
+├── README.md
+├── inventory/
+│   └── systems.md
+└── tickets/
+    ├── INC-001-cutter-unexpected-wifi.md
+    ├── LAB-001-destroyer-deployment.md
+    ├── LAB-002-frigate-antix-deployment.md
+    └── LAB-003-stingray-antix-live-usb.md
+```
+
+The repository is deliberately organised more like operational documentation than a collection of class notes.
+
+**Inventory** records what systems exist and their current roles.
+
+**Lab tickets** document planned deployments, configuration work, and completed projects.
+
+**Incident tickets** document unexpected behaviour, investigation, evidence, conclusions, and corrective action.
+
+## Working Method
+
+Where practical, lab work follows a simple administrative workflow:
+
+1. Define the objective.
+2. Record the initial system state.
+3. Plan the change or investigation.
+4. Perform the work from the command line.
+5. Verify the result.
+6. Record problems and troubleshooting steps.
+7. Document the final state.
+8. Commit the work to Git.
+
+The purpose is not merely to make something work, but to understand **why it works, how to verify it, and how to document it so another administrator could follow the reasoning**.
+
+## Career Objective
+
+This lab supports my transition into professional IT and Linux system administration.
+
+I am developing practical experience in Linux administration, networking, troubleshooting, remote systems, Git-based documentation, scripting, and security while working toward RHCSA-level competence.
+
+The repository will continue to grow as Task Force 27 gains new services, projects, incidents, and administrative responsibilities.
