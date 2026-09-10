@@ -71,7 +71,7 @@ Task Force 27 is the collective name for the computers, mobile endpoints, and re
 * **Operating system:** antiX 26 with Fluxbox
 * **Role:** Low-resource Linux administration and legacy-hardware training system
 * **Status:** Operational
-* **Related tickets:** `LAB-002-frigate-antix-deployment.md` planned
+* **Related tickets:** `LAB-002-frigate-antix-deployment.md`
 
 ## Mobile and Removable Assets
 
@@ -89,7 +89,7 @@ Task Force 27 is the collective name for the computers, mobile endpoints, and re
 * **Operating system:** Persistent antiX live system
 * **Role:** Portable Linux environment for hardware testing and recovery exercises
 * **Status:** Operational
-* **Related tickets:** `LAB-003-stingray-persistent-usb.md` planned
+* **Related tickets:** `LAB-003-stingray-antix-live-usb.md`
 
 ## Inventory Maintenance
 
