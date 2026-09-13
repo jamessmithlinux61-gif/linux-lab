@@ -10,7 +10,7 @@ My goal is to build both the technical skills and the working habits expected of
 
 **Objective: October26**
 
-Current study and lab work centres on:
+Current study and lab work centers on:
 
 * Linux command-line administration
 * Filesystems and storage
@@ -96,7 +96,7 @@ The investigation included:
 * NetworkManager audit records
 * Process identification
 * USB and Bluetooth history
-* Review of relevant network-manager behaviour
+* Review of relevant NetworkManager behavior
 * Security-impact assessment
 * Mitigation and recurrence monitoring
 
@@ -138,7 +138,7 @@ linux-lab/
     └── LAB-003-stingray-antix-live-usb.md
 ```
 
-The repository is deliberately organised more like operational documentation than a collection of class notes.
+The repository is deliberately organized more like operational documentation than a collection of class notes.
 
 **Inventory** records what systems exist and their current roles.
 
@@ -146,7 +146,7 @@ The repository is deliberately organised more like operational documentation tha
 
 **Lab tickets** document planned deployments, configuration work, and completed projects.
 
-**Incident tickets** document unexpected behaviour, investigation, evidence, conclusions, and corrective action.
+**Incident tickets** document unexpected behavior, investigation, evidence, conclusions, and corrective action.
 
 ## Working Method
 
