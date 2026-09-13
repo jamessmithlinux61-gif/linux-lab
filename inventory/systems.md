@@ -18,7 +18,7 @@ Task Force 27 is the collective name for the computers, mobile endpoints, and re
 * **Operating system:** Debian 13 with LXQt
 * **Role:** Primary infrastructure host and future central file-storage server
 * **Capabilities:** SSH, X11 forwarding, and Tailscale
-* **Status:** Maintenance required; intermittent power behaviour is awaiting investigation
+* **Status:** Maintenance required; intermittent power behavior is awaiting investigation
 * **Related tickets:** None currently recorded
 
 ### Cruiser

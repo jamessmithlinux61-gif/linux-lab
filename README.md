@@ -10,7 +10,7 @@ My goal is to build both the technical skills and the working habits expected of
 
 **Objective: October26**
 
-Current study and lab work centres on:
+Current study and lab work centers on:
 
 * Linux command-line administration
 * Filesystems and storage
@@ -96,13 +96,31 @@ The investigation included:
 * NetworkManager audit records
 * Process identification
 * USB and Bluetooth history
-* Review of relevant network-manager behaviour
+* Review of relevant NetworkManager behavior
 * Security-impact assessment
 * Mitigation and recurrence monitoring
 
 No evidence of malicious activity was identified.
 
 See [`tickets/INC-001-cutter-unexpected-wifi.md`](tickets/INC-001-cutter-unexpected-wifi.md).
+
+## Training
+
+### ARC-001 — Linux Administration Foundations
+
+Completed a hands-on administration arc focused on practical Linux troubleshooting and system-management skills.
+
+Work included:
+
+* Debian package and environment administration
+* system and network log analysis with `journalctl`
+* NetworkManager and DHCP troubleshooting
+* SSH administration and key-based authentication
+* Git access using HTTPS and SSH
+* filesystem and recovery concepts
+* evidence-driven troubleshooting methodology
+
+See [`training/ARC-001-linux-admin-foundations.md`](training/ARC-001-linux-admin-foundations.md).
 
 ## Repository Structure
 
@@ -111,6 +129,8 @@ linux-lab/
 ├── README.md
 ├── inventory/
 │   └── systems.md
+├── training/
+│   └── ARC-001-linux-admin-foundations.md
 └── tickets/
     ├── INC-001-cutter-unexpected-wifi.md
     ├── LAB-001-destroyer-deployment.md
@@ -118,13 +138,15 @@ linux-lab/
     └── LAB-003-stingray-antix-live-usb.md
 ```
 
-The repository is deliberately organised more like operational documentation than a collection of class notes.
+The repository is deliberately organized more like operational documentation than a collection of class notes.
 
 **Inventory** records what systems exist and their current roles.
 
+**Training records** document structured hands-on skill development and the administrative concepts demonstrated during each training arc.
+
 **Lab tickets** document planned deployments, configuration work, and completed projects.
 
-**Incident tickets** document unexpected behaviour, investigation, evidence, conclusions, and corrective action.
+**Incident tickets** document unexpected behavior, investigation, evidence, conclusions, and corrective action.
 
 ## Working Method
 
