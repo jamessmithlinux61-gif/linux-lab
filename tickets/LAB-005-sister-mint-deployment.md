@@ -154,6 +154,32 @@ Post-install validation confirmed:
 - System reboot completed successfully
 - Normal desktop functionality verified
 
+## Post-deployment Support
+
+Additional end-user configuration and validation were completed after the
+initial deployment.
+
+### Wireless Printing and Scanning
+
+- Connected the laptop to the household wireless printer.
+- Configured wireless printing successfully.
+- Configured wireless scanning successfully.
+- Verified both print and scan functionality.
+
+### Facebook Video Calling
+
+- Configured Facebook as a Chromium-based web application for convenient
+  desktop access.
+- Verified application launch and account access.
+- Completed a successful video test call.
+- Confirmed camera, microphone, speakers, and browser-based video calling were
+  functioning correctly.
+
+### Gaming
+
+Gaming configuration was discussed with the system owner but intentionally
+deferred at her request.
+
 ## Result
 
 Linux Mint 22.3 Cinnamon was successfully deployed and commissioned on the
