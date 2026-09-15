@@ -130,14 +130,53 @@ Timeshift status verified as OK after reboot.
 
 ## Remote Administration
 
-Remote administration was considered during deployment.
+Remote administration was initially discussed during deployment and declined
+by the system owner. No remote-access services were configured at that time.
 
-The system owner was not comfortable with remote administration, so no
-separate remote administrator account, SSH server, or remote-access service
-was configured.
+The system owner later changed that preference and explicitly requested remote
+administration.
 
-This decision intentionally minimizes unnecessary remote exposure and
-respects the system owner's preferred support model.
+A separate administrative account, `david`, was created and added to the
+`sudo` group. This keeps remote administrative activity separate from the
+system owner's normal account.
+
+Tailscale was configured on both Sevilla and the administrator workstation,
+Cutter. Connectivity between the two systems was verified with `tailscale
+ping`.
+
+OpenSSH Server was enabled on Sevilla.
+
+UFW was configured to allow TCP port 22 only through the `tailscale0`
+interface. SSH was not exposed through the normal wireless interface or by
+router port forwarding.
+
+A dedicated Ed25519 SSH key was created on Cutter specifically for
+administration of Sevilla:
+
+`~/.ssh/id_ed25519_sevilla`
+
+The public key was installed for the `david` account on Sevilla.
+
+SSH was hardened with the following effective configuration:
+
+- Public-key authentication enabled.
+- Password authentication disabled.
+- Keyboard-interactive authentication disabled.
+- Root login disabled.
+- SSH login restricted to the `david` account.
+
+Cutter's SSH client configuration was updated so remote administration can be
+initiated with:
+
+`ssh sevilla`
+
+A full reboot test was completed. After Sevilla restarted:
+
+- Tailscale connectivity returned successfully.
+- Cutter successfully reached Sevilla with `tailscale ping`.
+- A new SSH session was established using the dedicated SSH key.
+- The remote administration stack was therefore verified to persist across
+  reboot.
 
 ## Validation
 
