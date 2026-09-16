@@ -1,7 +1,7 @@
 # INC-001: Investigate Unexpected Wi-Fi Connection on Cutter
 
 * **Status:** Monitoring
-* **Priority:** Medium
+* **Priority:** P3 - Medium
 * **Incident date:** 2026-09-02
 * **Investigation date:** 2026-09-08
 * **Assigned to:** David Smith
