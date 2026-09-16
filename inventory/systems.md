@@ -3,7 +3,7 @@
 * **Owner:** David Smith
 - **Lab name:** Task Force 27
 * **Purpose:** Linux and IT administration training laboratory
-* **Last updated:** 2026-09-08
+* **Last updated:** 2026-09-15
 * **Current objective:** Objective: October26
 
 Task Force 27 is the collective name for the computers, mobile endpoints, and removable environments that make up David Smith's home Linux and IT administration laboratory.
@@ -18,8 +18,9 @@ Task Force 27 is the collective name for the computers, mobile endpoints, and re
 * **Operating system:** Debian 13 with LXQt
 * **Role:** Primary infrastructure host and future central file-storage server
 * **Capabilities:** SSH, X11 forwarding, and Tailscale
-* **Status:** Maintenance required; intermittent power behavior is awaiting investigation
-* **Related tickets:** None currently recorded
+* **Status:** Maintenance required; P1 power-instability incident under investigation
+* **Hardware inventory:** [Carrier component inventory](hardware/carrier.md)
+* **Related tickets:** [INC-002: Investigate Power Instability on Carrier](../tickets/INC-002-carrier-power-instability.md)
 
 ### Cruiser
 
