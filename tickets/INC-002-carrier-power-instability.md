@@ -10,7 +10,7 @@
 
 ## Summary
 
-Carrier has exhibited intermittent power instability, including unexpected reboots, shutdowns during startup, and abnormal power-button behaviour.
+Carrier has exhibited intermittent power instability, including unexpected reboots, shutdowns during startup, and abnormal power-button behavior.
 
 The issue was first observed after Carrier was relocated within the home lab. No causal relationship between the relocation and the fault has yet been established.
 
@@ -37,12 +37,12 @@ Because Carrier is intended to take on an infrastructure role within the lab, st
 
 ## Initial Observations
 
-Observed behaviour includes:
+Observed behavior includes:
 
 * Unexpected system reboots
 * Shutdown or loss of power during startup
 * Abnormal flashing of the power button
-* Intermittent behaviour rather than a consistent failure state
+* Intermittent behavior rather than a consistent failure state
 
 The root cause has not yet been identified.
 
@@ -66,7 +66,75 @@ The root cause has not yet been identified.
 9. Perform an extended stability test before returning Carrier to normal service.
 10. Document findings, corrective action, and verification results in this incident record.
 
-## Resolution Criteria
+## Investigation — 2026-09-16
+
+### Physical Inspection
+
+Carrier was inspected while powered off, disconnected from AC power, and discharged.
+
+Initial visual inspection found no obvious scorching, melted connectors, leaking or visibly damaged motherboard components, or partially installed memory modules.
+
+The front-panel power-switch wiring was inspected from the motherboard header to the case switch. No visible damage, pinching, or strain was observed.
+
+The CPU power connector appeared fully seated with no visible heat damage.
+
+A SATA data cable connected to the optical drive was observed with a pronounced bend near the motherboard connector. No exposed conductors or heat damage were visible.
+
+### Main ATX Power Connection
+
+During a controlled power-on test, slight upward movement of the main ATX motherboard power harness coincided with a brief flicker of the case-fan LEDs. Carrier remained powered.
+
+The system was shut down and de-energized for inspection.
+
+The 24-pin ATX motherboard power connector was found partially seated, with its retaining latch not engaged. The connector and motherboard socket showed no obvious scorching, melting, cracking, or heat discoloration.
+
+The connector was fully reseated and the retaining latch was engaged.
+
+Following reseating:
+
+* Carrier remained powered continuously during BIOS observation.
+* The system did not reproduce the previous unexpected shutdown behavior during the observation period.
+* A sustained power-button press of approximately four seconds successfully powered the system down.
+* Before reseating the ATX connector, a sustained press of approximately 15 seconds had failed to power the system down.
+
+The improperly seated ATX connector is considered a significant finding and a plausible contributor to the reported power-instability symptoms. Root cause has not yet been formally confirmed pending additional stability testing.
+
+### Boot-Device Investigation
+
+During the initial controlled startup, Carrier completed POST but displayed:
+
+`Reboot and Select proper Boot device or Insert Boot Media in selected Boot device and press a key`
+
+BIOS inspection showed:
+
+* 1 TB Western Digital WD10EZEX HDD detected
+* Optical drive detected
+* PNY CS900 boot SSD not detected
+
+Further physical inspection found that the SATA socket used by the optical drive was physically loose. BIOS had identified the optical drive on SATA Port 2.
+
+The boot SSD was connected within the same three-socket motherboard connector block.
+
+The optical-drive and SSD SATA data cables were both relocated from that connector block to other motherboard SATA ports.
+
+Following the cable relocation, Carrier detected the boot SSD and successfully reached the Debian login screen.
+
+### Current Assessment
+
+Two separate physical connection faults were identified during investigation:
+
+1. A partially seated and unlatched 24-pin ATX motherboard power connector.
+2. A physically loose motherboard SATA socket used by the optical drive.
+
+The physically loose SATA socket is a confirmed hardware defect affecting the optical drive's original connection.
+
+The restoration of SSD detection after both SATA data connections were moved away from the same connector block strongly associates the boot-device failure with the original SATA connection path. The specific failure affecting the SSD connection has not yet been isolated.
+
+The improperly seated ATX connector remains the strongest candidate for the reported intermittent power-instability behavior.
+
+The incident remains open pending extended stability testing, storage and filesystem health checks, and final verification.
+
+### Resolution Criteria
 
 This incident will not be considered resolved until:
 
