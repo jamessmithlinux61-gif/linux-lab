@@ -15,12 +15,12 @@ Task Force 27 is the collective name for the computers, mobile endpoints, and re
 * **Platform:** Self-built AMD desktop, assembled in 2014
 * **Memory:** 16 GB
 * **Storage:** 500 GB PNY CS900 SSD and 1 TB Western Digital HDD
-* **Operating system:** Debian 13 with LXQt
+* **Operating system:** Debian 13 with KDE Plasma
 * **Role:** Primary infrastructure host and future central file-storage server
 * **Capabilities:** SSH, X11 forwarding, and Tailscale
 * **Status:** Operational
 * **Hardware inventory:** [Carrier component inventory](hardware/carrier.md)
-* **Related tickets:** [INC-002: Investigate Power Instability on Carrier](../tickets/INC-002-carrier-power-instability.md)
+* **Related tickets:** [INC-002: Investigate Power Instability on Carrier](../tickets/INC-002-carrier-power-instability.md); [LAB-006: Carrier Server Deployment](../tickets/LAB-006-carrier-server-deployment.md)
 
 ### Cruiser
 
