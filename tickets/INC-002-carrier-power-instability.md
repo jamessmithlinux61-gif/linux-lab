@@ -1,6 +1,6 @@
 # INC-002: Investigate Power Instability on Carrier
 
-* **Status:** Investigating
+* **Status:** Resolved
 * **Priority:** P1 - Urgent
 * **Incident date:** 2026-09-06
 * **Investigation opened:** 2026-09-15
@@ -146,4 +146,25 @@ This incident will not be considered resolved until:
 
 ## Resolution
 
-Pending investigation.
+**Resolved:** 2026-09-27
+
+The primary cause of Carrier's intermittent power instability was determined to be a partially seated and unlatched 24-pin ATX motherboard power connector.
+
+The connector was fully reseated and its retaining latch engaged. Following corrective action, the previously observed spontaneous shutdown and abnormal power-button behavior could not be reproduced.
+
+A separate motherboard SATA connection defect was also identified during the investigation. The optical-drive SATA socket was physically loose, and the boot SSD had experienced detection failure while connected through the same connector area. The affected SATA data connections were relocated to other motherboard ports, restoring reliable boot-device detection.
+
+Subsequent validation included:
+
+* Successful controlled startup and shutdown testing
+* CPU stress testing without power instability
+* SMART short and extended tests on the PNY CS900 SSD without reported error
+* Extended unattended operation without recurrence of the original fault
+* Approximately 8 hours 44 minutes of continuous overnight operation from 2026-09-22 to 2026-09-23
+* Verification through the system journal that the overnight test concluded with an orderly shutdown, including successful unmount of `/srv/storage`, swap deactivation, filesystem synchronization, and transition through `poweroff.target`
+* No failed systemd units observed during final validation on 2026-09-27
+
+An apparent recurrence observed during KDE desktop testing was subsequently determined to be normal system suspend behavior rather than a hardware power failure.
+
+Carrier is returned to **Operational** status and may proceed with planned infrastructure and file-server deployment. Continued normal monitoring is appropriate, but no additional incident-specific corrective action is currently required.
+

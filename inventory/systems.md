@@ -18,7 +18,7 @@ Task Force 27 is the collective name for the computers, mobile endpoints, and re
 * **Operating system:** Debian 13 with LXQt
 * **Role:** Primary infrastructure host and future central file-storage server
 * **Capabilities:** SSH, X11 forwarding, and Tailscale
-* **Status:** Maintenance required; P1 power-instability incident under investigation
+* **Status:** Operational
 * **Hardware inventory:** [Carrier component inventory](hardware/carrier.md)
 * **Related tickets:** [INC-002: Investigate Power Instability on Carrier](../tickets/INC-002-carrier-power-instability.md)
 
