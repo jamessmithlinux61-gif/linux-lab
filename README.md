@@ -104,6 +104,26 @@ No evidence of malicious activity was identified.
 
 See [`tickets/INC-001-cutter-unexpected-wifi.md`](tickets/INC-001-cutter-unexpected-wifi.md).
 
+### INC-003 — Unexpected S3 Suspend and KDE/X11 Resume Failure on Carrier
+
+Investigated an unexpected ACPI S3 suspend followed by a KDE/X11 graphical-session failure on Carrier.
+
+The investigation included:
+
+* systemd and kernel journal analysis
+* separation of hardware, kernel, and graphical-session failure domains
+* KDE PowerDevil and systemd-logind policy review
+* KWin, SDDM, and Plasma Shell recovery attempts
+* identification and rejection of a misleading XInput hypothesis
+* investigation of a secondary KDE smart-card PAM warning
+* system-level prevention of future suspend and hibernate operations
+
+The suspend requester could not be identified. Carrier was restored by a clean reboot, and all systemd sleep/hibernate targets were masked to prevent recurrence.
+
+Informally: **The Agent S3 Incident.**
+
+See [`tickets/INC-003-carrier-unexpected-suspend.md`](tickets/INC-003-carrier-unexpected-suspend.md).
+
 ## Training
 
 ### ARC-001 — Linux Administration Foundations
