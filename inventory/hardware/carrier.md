@@ -4,11 +4,11 @@
 * **System type:** Custom-built desktop
 * **Assembly date:** 2014
 * **Environment:** Task Force 27
-* **Operating system:** Debian 13 with LXQt
+* **Operating system:** Debian 13 with KDE Plasma
 * **Memory:** 16 GB
 * **Primary storage:** 500 GB PNY CS900 SSD
 * **Secondary storage:** 1 TB Western Digital HDD
-* **Related incident:** [INC-002: Investigate Power Instability on Carrier](../../tickets/INC-002-carrier-power-instability.md)
+* **Related tickets:** [INC-002: Investigate Power Instability on Carrier](../../tickets/INC-002-carrier-power-instability.md); [INC-003: Unexpected S3 Suspend and KDE/X11 Resume Failure on Carrier](../../tickets/INC-003-carrier-unexpected-suspend.md); [LAB-006: Carrier Server Deployment](../../tickets/LAB-006-carrier-server-deployment.md)
 
 ## Component Inventory
 
@@ -39,4 +39,4 @@
 
 Carrier is a custom-built system and therefore has no single OEM system model or system-level serial number that can be used as a complete hardware reference.
 
-Additional hardware details, including network adapters, expansion hardware, storage health data, and any remaining unidentified components, will be added as the investigation continues.
+Additional hardware details, including network adapters, expansion hardware, and storage-health data, will be added as the system evolves.

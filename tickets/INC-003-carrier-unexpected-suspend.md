@@ -222,6 +222,74 @@ No evidence was found connecting this PAM warning to the suspend request. It was
 
 The package-owned PAM file was not modified.
 
+## Supporting Evidence
+
+The incident record uses curated excerpts rather than a complete raw system
+journal. This preserves the evidence supporting the conclusions while avoiding
+unrelated host, network, and session data.
+
+### Suspend and Resume Journal
+
+The relevant previous-boot journal window was reviewed with:
+
+```bash
+sudo journalctl -b -1 --since "09:29:00" --until "09:31:00" --no-pager
+```
+
+Selected evidence:
+
+```text
+Oct 06 09:30:02 carrier systemd-logind[779]: The system will suspend now!
+Oct 06 09:30:07 carrier systemd-sleep[3893]: Performing sleep operation 'suspend'...
+Oct 06 09:30:07 carrier kernel: PM: suspend entry (deep)
+Oct 06 09:30:25 carrier kernel: ACPI: PM: Waking up from system sleep state S3
+Oct 06 09:30:25 carrier kernel: PM: suspend exit
+Oct 06 09:30:25 carrier systemd-logind[779]: Operation 'suspend' finished.
+```
+
+These entries verify that Carrier entered and returned from an orderly deep/S3
+suspend rather than losing power.
+
+### KDE Power Policy
+
+The active KDE power configuration was inspected with:
+
+```bash
+cat ~/.config/powerdevilrc
+```
+
+Relevant configuration:
+
+```ini
+[AC][SuspendAndShutdown]
+AutoSuspendAction=0
+```
+
+This supported the conclusion that the normal KDE automatic-suspend setting was
+not configured to initiate the event.
+
+### systemd Sleep-Target Containment
+
+After recovery, sleep and hibernate targets were masked and verified with:
+
+```bash
+systemctl is-enabled sleep.target suspend.target hibernate.target \
+  hybrid-sleep.target suspend-then-hibernate.target
+```
+
+Verification returned:
+
+```text
+masked
+masked
+masked
+masked
+masked
+```
+
+This provides direct verification that suspend and hibernate were blocked at the
+systemd level as the preventive control for this incident.
+
 ## Root-Cause Assessment
 
 ### Suspend Trigger

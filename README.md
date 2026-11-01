@@ -8,7 +8,7 @@ My goal is to build both the technical skills and the working habits expected of
 
 ## Current Focus
 
-**Objective: October26**
+**Current objective:** Carrier infrastructure deployment, secure remote administration, and RHCSA-level practice
 
 Current study and lab work centers on:
 
@@ -32,7 +32,7 @@ Task Force 27 is a mixed-hardware home lab built around several machines with di
 
 | System        | Platform               | Operating System           | Primary Role                                          |
 | ------------- | ---------------------- | -------------------------- | ----------------------------------------------------- |
-| **Carrier**   | Self-built AMD desktop | Debian 13 / LXQt           | Infrastructure host and planned central storage       |
+| **Carrier**   | Self-built AMD desktop | Debian 13 / KDE Plasma     | Infrastructure host and planned central storage       |
 | **Cruiser**   | Acer Aspire 5          | Windows 11                 | Windows workstation and cross-platform administration |
 | **Cutter**    | Lenovo laptop          | Debian 13 / LXQt           | Primary Linux workstation and administration console  |
 | **Corvette**  | Acer Chromebook 311    | ChromeOS / Debian Crostini | Portable administration endpoint                      |
@@ -85,6 +85,36 @@ The initial build and persistence testing are complete. Additional cross-hardwar
 
 See [`tickets/LAB-003-stingray-antix-live-usb.md`](tickets/LAB-003-stingray-antix-live-usb.md).
 
+### LAB-005 — Linux Mint Deployment and Remote Administration on Sevilla
+
+Deployed Linux Mint 22.3 Cinnamon on a family Lenovo laptop, recovered from
+faulty installation media, configured updates and recovery, and later added a
+hardened Tailscale/SSH remote-administration path.
+
+See [`tickets/LAB-005-sister-mint-deployment.md`](tickets/LAB-005-sister-mint-deployment.md).
+
+### LAB-006 — Carrier Server Deployment
+
+Preparing Carrier to become the primary Task Force 27 infrastructure and
+file-storage host.
+
+Completed work includes the server baseline plus the `/srv/storage` directory,
+group, setgid, and default-ACL permission model. Firewall/network exposure review
+is the next step before Samba deployment.
+
+See [`tickets/LAB-006-carrier-server-deployment.md`](tickets/LAB-006-carrier-server-deployment.md).
+
+### LAB-007 — NC Remote Support Deployment
+
+Building a secure unattended support path to a family Windows endpoint using
+Tailscale and RustDesk.
+
+Carrier-to-endpoint direct support has been verified. Remaining work includes
+Cutter-side setup, reboot persistence, firewall/power review, and final
+reverse-access validation.
+
+See [`tickets/LAB-007-nc-remote-support.md`](tickets/LAB-007-nc-remote-support.md).
+
 ### INC-001 — Unexpected Wi-Fi Connection Investigation
 
 Investigated an unexpected connection by Cutter to an unfamiliar open wireless network.
@@ -103,6 +133,17 @@ The investigation included:
 No evidence of malicious activity was identified.
 
 See [`tickets/INC-001-cutter-unexpected-wifi.md`](tickets/INC-001-cutter-unexpected-wifi.md).
+
+### INC-002 — Carrier Power Instability
+
+Investigated intermittent Carrier shutdown and startup instability.
+
+The primary fault was traced to a partially seated 24-pin ATX motherboard power
+connector. A separate defective SATA connection path was also identified.
+Corrective action and extended validation returned Carrier to Operational
+status.
+
+See [`tickets/INC-002-carrier-power-instability.md`](tickets/INC-002-carrier-power-instability.md).
 
 ### INC-003 — Unexpected S3 Suspend and KDE/X11 Resume Failure on Carrier
 
@@ -147,15 +188,24 @@ See [`training/ARC-001-linux-admin-foundations.md`](training/ARC-001-linux-admin
 ```text
 linux-lab/
 ├── README.md
+├── docs/
+│   └── conventions.md
 ├── inventory/
+│   ├── hardware/
+│   │   └── carrier.md
 │   └── systems.md
 ├── training/
 │   └── ARC-001-linux-admin-foundations.md
 └── tickets/
     ├── INC-001-cutter-unexpected-wifi.md
+    ├── INC-002-carrier-power-instability.md
+    ├── INC-003-carrier-unexpected-suspend.md
     ├── LAB-001-destroyer-deployment.md
     ├── LAB-002-frigate-antix-deployment.md
-    └── LAB-003-stingray-antix-live-usb.md
+    ├── LAB-003-stingray-antix-live-usb.md
+    ├── LAB-005-sister-mint-deployment.md
+    ├── LAB-006-carrier-server-deployment.md
+    └── LAB-007-nc-remote-support.md
 ```
 
 The repository is deliberately organized more like operational documentation than a collection of class notes.

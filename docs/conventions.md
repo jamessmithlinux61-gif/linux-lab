@@ -48,7 +48,7 @@ Incident tickets record unplanned operational problems requiring investigation, 
 
 Examples include:
 
-* Unexpected system behaviour
+* Unexpected system behavior
 * Hardware failures
 * Network anomalies
 * Service outages

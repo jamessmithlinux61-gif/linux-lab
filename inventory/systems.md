@@ -3,8 +3,8 @@
 * **Owner:** David Smith
 - **Lab name:** Task Force 27
 * **Purpose:** Linux and IT administration training laboratory
-* **Last updated:** 2026-09-15
-* **Current objective:** Objective: October26
+* **Last updated:** 2026-11-01
+* **Current objective:** Carrier infrastructure deployment and secure remote administration
 
 Task Force 27 is the collective name for the computers, mobile endpoints, and removable environments that make up David Smith's home Linux and IT administration laboratory.
 
@@ -20,7 +20,7 @@ Task Force 27 is the collective name for the computers, mobile endpoints, and re
 * **Capabilities:** SSH, X11 forwarding, and Tailscale
 * **Status:** Operational
 * **Hardware inventory:** [Carrier component inventory](hardware/carrier.md)
-* **Related tickets:** [INC-002: Investigate Power Instability on Carrier](../tickets/INC-002-carrier-power-instability.md); [LAB-006: Carrier Server Deployment](../tickets/LAB-006-carrier-server-deployment.md)
+* **Related tickets:** [INC-002: Investigate Power Instability on Carrier](../tickets/INC-002-carrier-power-instability.md); [INC-003: Unexpected S3 Suspend and KDE/X11 Resume Failure on Carrier](../tickets/INC-003-carrier-unexpected-suspend.md); [LAB-006: Carrier Server Deployment](../tickets/LAB-006-carrier-server-deployment.md)
 
 ### Cruiser
 
@@ -74,14 +74,25 @@ Task Force 27 is the collective name for the computers, mobile endpoints, and re
 * **Status:** Operational
 * **Related tickets:** `LAB-002-frigate-antix-deployment.md`
 
+## Supported External Endpoints
+
+### NC Windows Support Endpoint
+
+* **Platform:** Windows laptop
+* **Operating system:** Windows 11 Home 25H2
+* **Role:** Family remote-support endpoint
+* **Capabilities:** Tailscale and unattended RustDesk remote support
+* **Status:** In progress
+* **Related tickets:** [LAB-007: NC Remote Support Deployment](../tickets/LAB-007-nc-remote-support.md)
+
 ## Mobile and Removable Assets
 
 ### Sloop
 
-* **Platform:** Android mobile phone
+* **Platform:** Samsung Galaxy S24 FE
+* **Operating system:** Android
 * **Role:** Portable communications and remote-administration endpoint
 * **Status:** Operational
-* **Notes:** Hardware model and lab capabilities have not yet been recorded
 * **Capabilities:** SSH client; verified remote SSH access to Carrier
 
 ### Stingray

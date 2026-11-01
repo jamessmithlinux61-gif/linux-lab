@@ -150,16 +150,84 @@ The pre-deployment baseline established that:
 - No Samba service is currently present.
 - Current listening services have been documented for later comparison.
 
-## Planned Phase II
+## Phase II — Storage and Permissions
 
-The next deployment phase will address:
+Storage and Unix permission work was completed and validated on 2026-10-06.
 
-- Server storage directory structure
-- Linux users and groups for shared access
-- Unix ownership and permission model
-- Samba installation and share design
+### Shared-Storage Structure
+
+The initial server-data structure under `/srv/storage` is:
+
+```text
+/srv/storage/shared
+/srv/storage/david
+```
+
+Final ownership and permissions:
+
+```text
+/srv/storage/shared  root:fileshare   2770
+/srv/storage/david   david:fileshare  2770
+```
+
+Both directories use the setgid bit (`drwxrws---`) so newly created child
+objects inherit the `fileshare` group.
+
+### Group-Inheritance Validation
+
+The `fileshare` group was created for shared-storage access.
+
+A group-context test using `newgrp fileshare` reported GID `1003`.
+
+Test objects created under the shared-storage path inherited the intended
+ownership:
+
+```text
+testfile  david:fileshare
+testdir   david:fileshare
+```
+
+This verified group inheritance from the setgid directory.
+
+### Default ACL
+
+A default ACL was applied to `/srv/storage/shared` so group write access remains
+consistent for newly created content.
+
+The effective default ACL included:
+
+```text
+user::rwx
+group::rwx
+group:fileshare:rwx
+mask::rwx
+other::---
+```
+
+Fresh validation objects showed:
+
+```text
+-rw-rw----  david:fileshare  testfile
+drwxrws---+ david:fileshare  testdir
+```
+
+The `+` indicates the presence of an extended ACL.
+
+### Phase II Assessment
+
+The storage and filesystem-permissions layer is complete and validated.
+
+The next deployment step is to review Carrier's current interfaces, subnet
+exposure, and host-firewall policy before Samba is installed or exposed.
+
+## Remaining Phase II Work
+
+The remaining initial file-server deployment work will address:
+
+- Current interface and subnet review
 - LAN versus Tailscale service exposure
 - Host-firewall policy
+- Samba installation and share design
 - Client access testing from another TF27 system
 
 Backup configuration and restore testing will be handled as a later deployment
@@ -167,4 +235,4 @@ phase rather than being combined with initial file-service configuration.
 
 ## Status
 
-In progress — Phase I baseline complete.
+In progress — storage and permissions complete; firewall/network exposure review next.
