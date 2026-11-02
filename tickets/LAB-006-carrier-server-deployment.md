@@ -217,17 +217,117 @@ The `+` indicates the presence of an extended ACL.
 
 The storage and filesystem-permissions layer is complete and validated.
 
-The next deployment step is to review Carrier's current interfaces, subnet
-exposure, and host-firewall policy before Samba is installed or exposed.
+With storage and filesystem permissions validated, the next deployment stage
+was network exposure and host-firewall policy review before Samba installation.
 
-## Remaining Phase II Work
+## Phase III — Host Firewall and Exposure Policy
+
+Carrier's host-firewall policy was designed, tested, and made persistent before
+Samba installation.
+
+### Firewall Design
+
+A dedicated native nftables table, `inet tf27`, was created with a default-drop
+input policy.
+
+The policy permits only the traffic required by Carrier's current role:
+
+- Established and related traffic
+- Loopback traffic
+- Traffic arriving through `tailscale0`
+- ICMP and ICMPv6 control traffic
+- Tailscale transport on UDP `41641`
+- DHCP/DHCPv6 client traffic on the Wi-Fi interface
+- SSH from the trusted `10.0.0.0/24` LAN
+- mDNS/Avahi from the trusted LAN
+- KDE Connect TCP/UDP `1714-1764` from the trusted LAN
+
+All other inbound traffic is dropped by default.
+
+Samba ports were intentionally not opened during this phase because Samba had
+not yet been installed or configured.
+
+### Tailscale Coexistence
+
+Tailscale already manages its own Netfilter chains through the `iptables-nft`
+compatibility layer.
+
+The stock Debian `/etc/nftables.conf` and `nftables.service` were not enabled
+because they contain whole-ruleset flush behavior that could remove dynamically
+managed Tailscale rules.
+
+Instead, Task Force 27 uses a dedicated rules file:
+
+```text
+/etc/nftables.d/tf27.nft
+```
+
+and a dedicated systemd unit:
+
+```text
+/etc/systemd/system/tf27-firewall.service
+```
+
+The service owns only `table inet tf27`.
+
+Startup removes any existing TF27 table and reloads the canonical rules file.
+Shutdown removes only the TF27 table. Tailscale-managed tables and chains are
+left untouched.
+
+### Validation
+
+The ruleset passed nftables syntax validation before deployment.
+
+Temporary deployment confirmed:
+
+- LAN gateway connectivity
+- DNS and Internet resolution
+- IPv6 control traffic
+- mDNS traffic
+- Tailscale coexistence
+- SSH access from Sloop to Carrier over the trusted LAN
+
+The LAN SSH rule recorded an accepted connection:
+
+```text
+iifname "wlx7419f8174ed0" ip saddr 10.0.0.0/24 tcp dport 22
+counter packets 1 bytes 60 accept
+```
+
+The firewall was then made persistent with `tf27-firewall.service`.
+
+After a planned reboot, validation confirmed:
+
+```text
+systemctl is-enabled tf27-firewall.service
+enabled
+
+systemctl is-active tf27-firewall.service
+active
+```
+
+The `inet tf27` table was restored automatically, Carrier returned to
+`10.0.0.40/24`, DNS and Internet access worked, and the Tailscale `ts-input`
+hooks remained present for both IPv4 and IPv6.
+
+A second Sloop-to-Carrier SSH test after reboot again incremented the trusted-LAN
+SSH rule, confirming that permitted administrative access survived the reboot.
+
+### Phase III Assessment
+
+Carrier now has a persistent default-deny host firewall with explicit service
+exposure and verified coexistence with Tailscale.
+
+Firewall deployment and reboot persistence are complete.
+
+## Remaining Deployment Work
 
 The remaining initial file-server deployment work will address:
 
-- Current interface and subnet review
-- LAN versus Tailscale service exposure
-- Host-firewall policy
 - Samba installation and share design
+- Add explicit Samba exposure rules for the trusted LAN
+- Confirm Samba access over Tailscale through the existing trusted
+  `tailscale0` policy
 - Client access testing from another TF27 system
 
 Backup configuration and restore testing will be handled as a later deployment
@@ -235,4 +335,4 @@ phase rather than being combined with initial file-service configuration.
 
 ## Status
 
-In progress — storage and permissions complete; firewall/network exposure review next.
+In progress — storage, permissions, and persistent host firewall complete; Samba deployment next.
