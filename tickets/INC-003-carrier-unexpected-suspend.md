@@ -290,6 +290,29 @@ masked
 This provides direct verification that suspend and hibernate were blocked at the
 systemd level as the preventive control for this incident.
 
+### Post-Incident Stability Validation
+
+Immediately before the planned 2026-11-02 reboot for LAB-006 firewall
+persistence testing, Carrier's uptime was recorded:
+
+```text
+uptime -p
+up 3 weeks, 5 days, 14 hours, 39 minutes
+
+uptime -s
+2026-10-06 13:20:20
+
+who -b
+system boot  2026-10-06 13:20
+```
+
+Carrier therefore remained continuously operational for 26 days, 14 hours, and
+39 minutes following the 2026-10-06 recovery reboot.
+
+No recurrence of the unexpected S3 suspend was observed during this interval.
+The uptime streak was scheduled to end only for the planned reboot required to
+validate persistent firewall behavior under LAB-006.
+
 ## Root-Cause Assessment
 
 ### Suspend Trigger
